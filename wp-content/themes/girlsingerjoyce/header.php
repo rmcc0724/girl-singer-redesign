@@ -10,3 +10,5 @@
 </head>
 	<body>  
 	<h1>Here's the header</h1>
+	
+  <?php wp_nav_menu(array('theme_location'=>'primary')); ?>

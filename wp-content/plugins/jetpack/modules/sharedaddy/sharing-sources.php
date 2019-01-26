@@ -201,11 +201,12 @@ abstract class Sharing_Source {
 		$text = apply_filters( 'jetpack_sharing_display_text', $text, $this, $id, $args );
 
 		return sprintf(
-			'<a rel="nofollow" data-shared="%s" class="%s" href="%s"%s title="%s"><span%s>%s</span></a>',
+			'<a rel="nofollow%s" data-shared="%s" class="%s" href="%s"%s title="%s"><span%s>%s</span></a>',
+			( true == $this->open_link_in_new ) ? ' noopener noreferrer' : '',
 			( $id ? esc_attr( $id ) : '' ),
 			implode( ' ', $klasses ),
 			$url,
-			( true == $this->open_link_in_new ) ? ' rel="noopener noreferrer" target="_blank"' : '',
+			( true == $this->open_link_in_new ) ? ' target="_blank"' : '',
 			$title,
 			( 'icon' == $this->button_style ) ? '></span><span class="sharing-screen-reader-text"' : '',
 			$text
@@ -532,7 +533,7 @@ class Share_Email extends Sharing_Source {
 			/** This filter is documented in modules/stats.php */
 			echo apply_filters( 'jetpack_static_url', plugin_dir_url( __FILE__ ) . 'images/loading.gif' ); ?>" alt="loading" width="16" height="16" />
 			<input type="submit" value="<?php esc_attr_e( 'Send Email', 'jetpack' ); ?>" class="sharing_send" />
-			<a rel="nofollow" href="#cancel" class="sharing_cancel"><?php _e( 'Cancel', 'jetpack' ); ?></a>
+			<a rel="nofollow" href="#cancel" class="sharing_cancel" role="button"><?php _e( 'Cancel', 'jetpack' ); ?></a>
 
 			<div class="errors errors-1" style="display: none;">
 				<?php _e( 'Post was not sent - check your email addresses!', 'jetpack' ); ?>
@@ -589,7 +590,12 @@ class Share_Twitter extends Sharing_Source {
 		 * @param string $string Twitter Username.
 		 * @param array $args Array of Open Graph Meta Tags and Twitter Cards tags.
 		 */
-		$twitter_site_tag_value = apply_filters( 'jetpack_twitter_cards_site_tag', '', array() );
+		$twitter_site_tag_value = apply_filters(
+			'jetpack_twitter_cards_site_tag',
+			'',
+			/** This action is documented in modules/sharedaddy/sharing-sources.php */
+			array( 'twitter:creator' => apply_filters( 'jetpack_sharing_twitter_via', '', $post->ID ) )
+		);
 
 		/*
 		 * Hack to remove the unwanted behavior of adding 'via @jetpack' which
@@ -1434,7 +1440,28 @@ class Share_Tumblr extends Sharing_Source {
 				$target = '_blank';
 			}
 
-			return '<a target="' . $target . '" href="https://www.tumblr.com/share/link/?url=' . rawurlencode( $this->get_share_url( $post->ID ) ) . '&name=' . rawurlencode( $this->get_share_title( $post->ID ) ) . '" title="' . __( 'Share on Tumblr', 'jetpack' ) . '" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:62px; height:20px; background:url(\'https://platform.tumblr.com/v1/share_2.png\') top left no-repeat transparent;">' . __( 'Share on Tumblr', 'jetpack' ) . '</a>';
+			/**
+			 * If we are looking at a single post, let Tumblr figure out the post type (text, photo, link, quote, chat, or video)
+			 * based on the content available on the page.
+			 * If we are not looking at a single post, content from other posts can appear on the page and Tumblr will pick that up.
+			 * In this case, we want Tumblr to focus on our current post, so we will limit the post type to link, where we can give Tumblr a link to our post.
+			 */
+			if ( ! is_single() ) {
+				$posttype = 'data-posttype="link"';
+			} else {
+				$posttype = '';
+			}
+
+			// Documentation: https://www.tumblr.com/docs/en/share_button
+			return sprintf(
+				'<a class="tumblr-share-button" target="%1$s" href="%2$s" data-title="%3$s" data-content="%4$s" title="%5$s"%6$s>%5$s</a>',
+				$target,
+				'https://www.tumblr.com/share',
+				$this->get_share_title( $post->ID ),
+				$this->get_share_url( $post->ID ),
+				__( 'Share on Tumblr', 'jetpack' ),
+				$posttype
+			);
 		 } else {
 			return $this->get_link( $this->get_process_request_url( $post->ID ), _x( 'Tumblr', 'share to', 'jetpack' ), __( 'Click to share on Tumblr', 'jetpack' ), 'share=tumblr' );
 		}
@@ -1449,10 +1476,10 @@ class Share_Tumblr extends Sharing_Source {
 		wp_redirect( $url );
 		die();
 	}
-	// http://www.tumblr.com/share?v=3&u=URL&t=TITLE&s=
+
 	public function display_footer() {
 		if ( $this->smart ) {
-			?><script type="text/javascript" src="https://platform.tumblr.com/v1/share.js"></script><?php
+			?><script id="tumblr-js" type="text/javascript" src="https://assets.tumblr.com/share-button.js"></script><?php
 		} else {
 			$this->js_dialog( $this->shortname, array( 'width' => 450, 'height' => 450 ) );
 		}

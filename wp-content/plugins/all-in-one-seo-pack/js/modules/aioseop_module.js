@@ -49,48 +49,6 @@ function toggleVisibility( id ) {
 }
 
 /**
- * @summary Counts characters.
- *
- * @since 1.0.0
- * @param Object $field.
- * @param Object $cntfield.
- * @return Mixed.
- */
-function countChars( field, cntfield ) {
-	var extra = 0;
-	var field_size;
-	if ( ( field.attr('name') == 'aiosp_title' )
-		&& ( typeof aiosp_title_extra !== 'undefined' ) ) {
-		extra = aiosp_title_extra;
-	}
-	cntfield.val(field.val().length + extra);
-	if ( typeof field.attr('size') != 'undefined' ) {
-		field_size = field.attr('size');
-	} else {
-		field_size = field.attr('rows') * field.attr('cols');
-	}
-    field_size = parseInt(field_size, 10);
-	if ( field_size < 10 ) {
-		return;
-    }
-	if ( cntfield.val() > field_size ) {
-        cntfield.removeClass().addClass('aioseop_count_ugly');
-	} else if ( ( 'aiosp_title' === field.attr('name' ) ) || ( 'aiosp_home_title' === field.attr('name') ) ) {
-        if ( cntfield.val() > ( field_size - 6 ) ) {
-            cntfield.removeClass().addClass('aioseop_count_bad');
-        } else {
-            cntfield.removeClass().addClass('aioseop_count_good');
-        }
-    } else {
-        if ( cntfield.val() > ( field_size - 10 ) ) {
-            cntfield.removeClass().addClass('aioseop_count_bad');
-        } else {
-            cntfield.removeClass().addClass('aioseop_count_good');
-        }
-    }
-}
-
-/**
  * @summary Returns the fields value.
  *
  * @since 1.0.0
@@ -282,34 +240,6 @@ jQuery( document ).ready(
 				}
 			}
 		);
-
-        /**
-         * @summary workaround for bug that causes radio inputs to lose settings when meta box is dragged.
-         *
-         * props to commentluv for this fix
-         * @author commentluv.
-         * @link https://core.trac.wordpress.org/ticket/16972
-         * @since 1.0.0
-         */
-        jQuery(document).ready(
-            function () {
-                // listen for drag drop of metaboxes , bind mousedown to .hndle so it only fires when starting to drag
-                jQuery('.hndle').mousedown(
-                    function () {
-
-                        // set live event listener for mouse up on the content .wrap and wait a tick to give the dragged div time to settle before firing the reclick function
-                        jQuery('.wrap').mouseup(
-                            function () {
-                                aiosp_store_radio();
-                                setTimeout(function () {
-                                    aiosp_reclick_radio();
-                                }, 50);
-                            }
-                        );
-                    }
-                );
-            }
-        );
 
         /**
          * @summary Javascript for using WP media uploader. Indentifies which DOM should use custom uploader plugin.
@@ -629,6 +559,19 @@ jQuery( document ).ready(
 			}
 		);
 
+    jQuery( "div#aiosp_robots_default_metabox" )
+		.delegate(
+			"a.aiosp_robots_edit_rule", "click", function( e ) {
+				e.preventDefault();
+                jQuery('input[name="aiosp_robots_agent"]').val(jQuery(this).attr('data-agent'));
+                jQuery('select[name="aiosp_robots_type"]').val(jQuery(this).attr('data-type'));
+                jQuery('input[name="aiosp_robots_path"]').val(jQuery(this).attr('data-path'));
+                jQuery('input.add-edit-rule').val(jQuery('.aioseop_table').attr('data-edit-label'));
+                jQuery('input.edit-rule-id').val(jQuery(this).attr('data-id'));
+				return false;
+			}
+		);
+    
 		jQuery( "a.aiosp_robots_physical" ).on( 'click', function( e ) {
 			e.preventDefault();
 			aioseop_handle_post_url(
@@ -647,8 +590,6 @@ jQuery( document ).ready(
 		});
 
         aiospinitAll();
-        aiospinitCounting();
-
 	}
 );
 
@@ -855,7 +796,12 @@ function aioseop_overflow_border( el ) {
 }
 
 function aiospinitAll(){
-  if ( jQuery( '.aiseop-date' ).length > 0 && jQuery( '.aiseop-date' ).eq( 0 ).prop( 'type' ).toLowerCase() === 'text' ) {
+    aiospinitSocialMetaInPosts(jQuery);
+    aiospinitCalendar();
+}
+
+function aiospinitCalendar(){
+    if ( jQuery( '.aiseop-date' ).length > 0 && jQuery( '.aiseop-date' ).eq( 0 ).prop( 'type' ).toLowerCase() === 'text' ) {
 	  jQuery( '.aiseop-date' ).datepicker(
 			{
 				dateFormat: "yy-mm-dd"
@@ -864,12 +810,9 @@ function aiospinitAll(){
 	}
 }
 
-function aiospinitCounting(){
-    /* count them characters */
-	jQuery( '.aioseop_count_chars' ).on('keyup keydown', function(){
-        countChars( jQuery(this).eq(0), jQuery(this).parent().find('[name="' + jQuery(this).attr('data-length-field') + '"]').eq(0));
-    });
-	jQuery( '.aioseop_count_chars' ).each(function(){
-        countChars( jQuery(this).eq(0), jQuery(this).parent().find('[name="' + jQuery(this).attr('data-length-field') + '"]').eq(0));
+function aiospinitSocialMetaInPosts($) {
+    // clear the radio buttons when the user clicks the upload button.
+    $('input[name="aioseop_opengraph_settings_customimg_checker"] ~ .aioseop_upload_image_button').on('click', function(e){
+        $('input[name="aioseop_opengraph_settings_image"]').attr('checked', false);
     });
 }
