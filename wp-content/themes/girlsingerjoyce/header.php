@@ -26,12 +26,16 @@ This function checks to see if the page is true : it uses the basictheme-class e
 */
 		
 		if( is_front_page() ):
-			$basictheme_classes = array( 'basictheme-class', 'my-class' );
+			$girlsinger_classes = array( 'girlsinger-class', 'my-class' );
 		else:
-			$basictheme_classes = array( 'no-basictheme-class' );
+			$girlsinger_classes = array( 'no-girlsinger-class' );
 		endif;
 	?>
-<body <?php body_class( $basictheme_classes ); ?>>
+<body <?php body_class( $girlsinger_classes ); ?>>
 	<h1>Here's the header</h1>
 	
   <?php wp_nav_menu(array('theme_location'=>'primary')); ?>
+  
+<!--Here we add the custom header image to the header and set the sizing properties -->
+
+  <img src="<?php header_image(); ?>" height="<?php echo get_custom_header()->height; ?>" width="<?php echo get_custom_header()->width; ?>" alt="" />

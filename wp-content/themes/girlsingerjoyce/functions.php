@@ -39,4 +39,13 @@ This activates the custom features
 ============================================================
 */
 add_action('init', 'girlsinger_theme_setup');
+
+/*
+============================================================
+Here we activate our custom background, header, and post thumbnails
+============================================================
+*/
+add_theme_support('custom-background');
+add_theme_support('custom-header');
+add_theme_support('post-thumbnails');
 ?>
