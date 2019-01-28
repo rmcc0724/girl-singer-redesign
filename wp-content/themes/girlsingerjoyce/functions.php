@@ -19,9 +19,9 @@ Add action calls all of the scripts and triggers the above function 'awesome_scr
 ============================================================
 */
 add_action( 'wp_enqueue_scripts', 'girlsinger_script_enqueue');
+
+
 /*
-
-
 ============================================================
 This function adds the menus to your theme allowing for mutiple menus
 ============================================================
@@ -39,8 +39,8 @@ This activates the custom features
 ============================================================
 */
 add_action('init', 'girlsinger_theme_setup');
-/*
 
+/*
 ============================================================
 Here we activate our custom background, header, and post thumbnails
 ============================================================
@@ -56,4 +56,31 @@ Audio, Video, Site, gallery, Link, image, quote, status, shot
 ============================================================
 */
 add_theme_support('post-formats', array('aside', 'image', 'video'));
+
+
+
+/*
+	==========================================
+	 Sidebar function
+	==========================================
+*/
+function girlsinger_widget_setup() {
+	
+	register_sidebar(
+		array(	
+			'name'	=> 'Sidebar',
+			'id'	=> 'sidebar-1',
+			'class'	=> 'custom',
+			'description' => 'Standard Sidebar',
+			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</aside>',
+			'before_title'  => '<h1 class="widget-title">',
+			'after_title'   => '</h1>',
+		)
+	);
+	
+}
+add_action('widgets_init','girlsinger_widget_setup');
+
+
 ?>
