@@ -6,11 +6,11 @@ This function adds the custom JavaScript and CSS files to your custom theme
 */
 function girlsinger_script_enqueue() {
     
-        //Here we have the enqueue stlye function that grabs our custom css file and includes it in our theme
+    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '4.0.0', 'all');
     wp_enqueue_style('customstyle', get_template_directory_uri() . '/css/girl-singer.css', array(), '1.0.0', 'all');
-    
-        //Here we have the enqueue script function that grabs our custom js file and includes it in our theme
+	wp_enqueue_script('bootstrapjs', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '4.0.0', true);
     wp_enqueue_script('customjs', get_template_directory_uri() . '/js/girl-singer.js', array(), '1.0.0', true);
+ wp_enqueue_script('jquery');
 };
 
 /*

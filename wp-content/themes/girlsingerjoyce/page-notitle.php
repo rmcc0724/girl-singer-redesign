@@ -1,24 +1,29 @@
 <?php 
+	
 /*
-Template Name: Page No Title
+	Template Name: Page No Title
 */
-
+	
 get_header(); ?>
-<?php
-/*
-============================================================
-If there are post, print all of the post content 
-============================================================
-*/
-if(have_posts() ):
-    while( have_posts() ): the_post(); ?>
-    
-    <h1>This is my static title</h1>
-    <p><?php the_content(); ?></p
 
-<?php endwhile;
-endif;
-?>
+	<?php 
+	
+	if( have_posts() ):
+		
+		while( have_posts() ): the_post(); ?>
+			
+			<h1>This is my Static Title</h1>
+			
+			<small>Posted on: <?php the_time('F j, Y'); ?> at <?php the_time('g:i a'); ?>, in <?php the_category(); ?></small>
+			
+			<p><?php the_content(); ?></p>
+			
+			<hr>
+		
+		<?php endwhile;
+		
+	endif;
+			
+	?>
 
-<h1>This is my theme</h1>
 <?php get_footer(); ?>
