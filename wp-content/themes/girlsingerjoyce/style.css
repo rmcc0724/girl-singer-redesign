@@ -3,3 +3,124 @@ Theme Name: Girl Singer Joyce
 Author: Reid McCulloch
 Description: My custom theme
 */
+
+
+html {
+    background-color: white !important;
+}
+
+body {
+    /*height: 100%;*/
+    margin: 0 auto !important;
+}
+
+header {
+    font-family: 'Cormorant Unicase', serif;
+}
+
+.bg-photo {
+    background-image: url(/wp-content/uploads/2019/01/Piano-mobile.jpg) !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
+}
+
+.wrapper {
+    max-width: 940px;
+}
+
+.row {
+    margin: 0 !important;
+}
+
+
+.bio-wrap {
+    padding-bottom: 2em;
+}
+
+
+
+
+#menu-main-navigation {
+    word-spacing: 1em;
+}
+
+#menu-main-navigation li a {
+    color: white !important;
+
+}
+
+.menu-footer-links-container {
+    word-spacing: 1em;
+    padding-top: .5em;
+    font-size: .8em;
+    max-width: 840px;
+    margin: 0 auto;
+
+}
+
+#menu-footer-links li a {
+    color: black !important;
+}
+
+footer {
+
+    background-color: #cccccc;
+
+}
+
+footer li {
+    display: inline;
+}
+
+@media screen and (max-width: 575px) {
+
+    #mobile-photo {
+        width: 150px;
+    }
+    .bio {
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 1.4em;
+        margin: 0 1em;
+    }
+
+}
+
+
+
+@media screen and (min-width: 576px) {
+    #mobile-photo {
+        max-width: 250px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .bio-wrap p {
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 1em;
+    }
+}
+
+/* For tablet and desktop views */
+
+@media screen and (min-width: 768px) {
+    #menu-main-navigation li {
+        display: inline;
+    }
+    .bio {
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 3em;
+    }
+
+    .bg-photo {
+        background-image: url(/wp-content/uploads/2019/01/piano.jpg) !important;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: scroll;
+    }
+
+}
+
+@media screen and (min-width: 992px) {}
+
+@media screen and (min-width: 1200px) {}
