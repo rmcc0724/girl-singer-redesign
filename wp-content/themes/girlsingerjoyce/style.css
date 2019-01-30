@@ -19,7 +19,7 @@ header {
 }
 
 .bg-photo {
-    background-image: url(/wp-content/uploads/2019/01/Piano-mobile.jpg) !important;
+    background-image: url(/wp-content/uploads/2019/01/Piano-mobile-1.jpg) !important;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: scroll;
@@ -45,6 +45,7 @@ header {
     word-spacing: 1em;
 }
 
+.bio-wrap,
 #menu-main-navigation li a {
     color: white !important;
 

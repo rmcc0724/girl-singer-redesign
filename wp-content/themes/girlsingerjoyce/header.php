@@ -18,7 +18,6 @@
 		else:
 			$girlsinger_classes = array( 'no-girlsinger-class' );
 		endif;
-		
 	?>
 	
 <body <?php body_class( $basictheme_classes ); ?>>
@@ -34,15 +33,15 @@
                 <p>VOCALIST</p>
             </div>
         </div>
-    </header>
 
+                        </header>     
     <div class="bg-photo">
             <div class="row">
                 <div class="d-none d-md-flex col-12 justify-content-center my-1 pt-1">
                     <?php wp_nav_menu(array('theme_location'=>'primary')); ?>
                 </div>
             </div>
-       
+  
 
             <div class="row d-xs-block d-md-none">
                 <div class="col-12 m-auto pt-4 text-center">
