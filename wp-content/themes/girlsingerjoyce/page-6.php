@@ -15,7 +15,7 @@ get_header(); ?>
 </div>
     <div class="row d-xs-block d-md-none">
         <div class="col-12">
-            <h3 class="text-white">
+            <h3 class="text-white text-center">
                 <?php the_title(); ?>
             </h3>
         </div>

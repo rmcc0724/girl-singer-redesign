@@ -43,7 +43,7 @@
             </div>
   
 
-            <div class="row d-xs-block d-md-none">
+            <div class="row d-xs-block d-md-none mb-1">
                 <div class="col-12 m-auto pt-4 text-center">
                     <img id="mobile-photo" class="rounded" style="" src="/wp-content/uploads/2019/01/Joyce_about_mobile-300x300-1.jpg" alt="Joyce McCulloch" />
                 </div>
