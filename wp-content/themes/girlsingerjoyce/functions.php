@@ -14,8 +14,9 @@ function girlsinger_script_enqueue() {
     wp_enqueue_style('bootstrap', get_template_directory_uri() . '/bootstrap/dist/css/bootstrap.min.css');
 	wp_enqueue_script('bootstrapjs', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '4.0.0', true);
     wp_enqueue_style('font-awesome', get_template_directory_uri() . '/bootstrap/font-awesome/css/font-awesome.min.css');
+    wp_enqueue_style('Cormorant', 'https://fonts.googleapis.com/css?family=Cormorant+Unicase|Source+Sans+Pro|Roboto');
     wp_enqueue_style('bootstrap-social', get_template_directory_uri() . '/bootstrap/bootstrap-social/bootstrap-social.css');
-     wp_enqueue_script('jquery');
+    wp_enqueue_script('jquery', 'https://code.jquery.com/jquery-3.3.1.slim.min.js');
 };
 
 /*

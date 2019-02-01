@@ -1,0 +1,201 @@
+/**
+ * Jetpack (plugin)
+ * @link https://jetpack.com/
+ * -----------------------------------------------------------------------------
+ */
+
+
+/* Infinite Scroll
+------------------------------------------------------------------------------*/
+
+.infinite-scroll .content-area .pagination,
+.infinite-scroll.neverending .site-footer {
+	display: none;
+}
+
+.infinity-end.neverending .site-footer {
+	display: block;
+}
+
+#infinite-handle {
+	border-top: 1px solid rgba(255, 255, 255, 0.2);
+	padding: 19px;
+	text-align: center;
+}
+
+#infinite-handle span {
+	background-color: rgba(0, 0, 0, 0.4);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	color: rgba(255, 255, 255, 0.7);
+	cursor: pointer;
+	display: inline-block;
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 13px;
+	font-size: 1.3rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	line-height: 1.69230769;
+	margin-bottom: 0.76923077em;
+	margin-left: 0.76923077em;
+	opacity: 1;
+	padding: 0.61538462em 1.53846154em;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	-webkit-transition: all 0.25s ease 0s;
+	transition: all 0.25s ease 0s;
+}
+
+#infinite-handle span:hover,
+#infinite-handle span:focus {
+	background-color: rgba(0, 0, 0, 0.8);
+	color: #fff;
+	text-decoration: none;
+}
+
+#infinite-handle span {
+	margin: 0;
+}
+
+#infinite-footer {
+	background-color: rgba(255, 255, 255, 0.2);
+	color: #fff;
+	font-size: 13px;
+	font-size: 1.3rem;
+	letter-spacing: 0.1em;
+	line-height: 1.53846154;
+	padding: 1.53846154em;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+#infinite-footer .container {
+	background: none;
+	border-width: 0;
+	max-width: 100%;
+	padding: 0;
+	position: relative;
+	width: 100% !important;
+}
+
+#infinite-footer .blog-info,
+#infinite-footer .blog-credits {
+	color: #fff;
+	float: none;
+	line-height: 1.53846154;
+	text-align: center;
+}
+
+#infinite-footer .blog-info a,
+#infinite-footer .blog-credits a,
+#infinite-footer .blog-info a:hover,
+#infinite-footer .blog-credits a:hover,
+#infinite-footer .blog-info a:focus,
+#infinite-footer .blog-credits a:focus {
+	color: inherit;
+}
+
+#infinite-footer .blog-info {
+	display: none;
+}
+
+#infinite-footer .blog-credits {
+	width: 100%;
+}
+
+.has-cuebar #infinite-footer,
+.has-playbar #infinite-footer {
+	bottom: 50px !important;
+}
+
+.infinite-loader {
+	display: inline-block;
+	margin: 6px 0;
+}
+
+.infinite-loader:before {
+	display: block;
+	margin: 0;
+}
+
+
+/**
+ * Sharing
+ * -----------------------------------------------------------------------------
+ */
+
+.sharedaddy {
+	margin-bottom: 1.625em;
+}
+
+
+/**
+ * Widgets
+ * -----------------------------------------------------------------------------
+ */
+
+/* About Me */
+.aboutme_widget #am_thumbnail img {
+	border: none;
+	max-width: 100%;
+}
+
+.aboutme_widget #am_name {
+	letter-spacing: 0.1em;
+	margin: 0;
+}
+
+.aboutme_widget #am_name a {
+	color: #fff;
+	font-size: 14px;
+	font-size: 1.4rem;
+}
+
+.aboutme_widget #am_headline {
+	font-size: 14px;
+	font-size: 1.4rem;
+	font-weight: 700;
+	line-height: 1.77777778;
+	margin: 0 0 0.5em;
+}
+
+/* Contact Info */
+.widget_contact_info #contact-map {
+	margin-bottom: 1em;
+}
+
+.widget_contact_info .confit-address,
+.widget_contact_info .confit-phone,
+.widget_contact_info .confit-hours {
+	margin-bottom: 0.5em;
+}
+
+.widget_contact_info .confit-address {
+	font-weight: 700;
+}
+
+/* Milestone */
+.widget-area .milestone-widget {
+	margin-bottom: 3.125em;
+}
+
+.widget-area .milestone-content {
+	margin: 0;
+	max-width: 100%;
+}
+
+.widget-area .milestone-header {
+	background-color: #fff;
+}
+
+.widget-area .milestone-header .event {
+	font-weight: 700;
+}
+
+.widget-area .milestone-message {
+	padding: 1em;
+}
+
+.widget-area .milestone-countdown .difference {
+	color: #fff;
+}
