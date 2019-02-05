@@ -1985,6 +1985,8 @@ time.updated {
 	padding: 1.53846154em;
 	text-align: center;
 	text-transform: uppercase;
+	display: none !important
+		
 }
 
 .has-cuebar .credits,
